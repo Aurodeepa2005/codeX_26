@@ -1,0 +1,55 @@
+# ============================================================
+# StandardMatch AI — .gitignore
+# ============================================================
+
+# --- Environment & Secrets ---
+.env
+*.env.local
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.pyc
+*.pyo
+*.pyd
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.eggs/
+venv/
+.venv/
+env/
+.mypy_cache/
+.pytest_cache/
+
+# --- Data (raw & processed — too large / not for version control) ---
+data/raw/
+data/processed/
+data/evaluation/labelled_results.csv
+
+# --- ML Artifacts (generated, not to be committed) ---
+models/
+indexes/faiss/
+indexes/bm25/
+
+# --- Logs ---
+*.log
+data/raw/logs/
+
+# --- IDE ---
+.vscode/
+.idea/
+*.swp
+*.swo
+*.DS_Store
+Thumbs.db
+
+# --- Jupyter ---
+.ipynb_checkpoints/
+*.ipynb
+
+# --- Temporary ---
+tmp/
+scratch/

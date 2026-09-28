@@ -1,0 +1,13 @@
+query,expected_is_numbers,category,notes
+"GI pipes for rural drinking water supply, medium class, screwed and socketed","IS:1239:Part 1",pipes,"Primary standard for mild steel tubes/GI pipes used in water supply"
+"mild steel wrought pipe fittings for water service lines","IS:1239:Part 2",pipes,"Fittings for GI pipes including sockets, elbows, tees"
+"unplasticized PVC pipes for potable water supply in rural distribution","IS:4985",pipes,"UPVC pressure pipes for drinking water infrastructure"
+"centrifugally cast spun iron pressure pipes for municipal water transmission","IS:1536",pipes,"Cast iron pressure pipes for water, gas and sewage mains"
+"injection moulded HDPE pipe fittings for potable water connections","IS:8008:Part 1",pipes,"High density polyethylene pipe fittings for water connections"
+"fabricated PVC-U fittings for drinking water pipelines","IS:10124:Part 1",pipes,"Fabricated unplasticized PVC fittings for water supply"
+"high density polyethylene pipes for municipal sewerage and drainage","IS:14333",pipes,"PE sewerage and industrial effluent pipeline standard"
+"polyethylene pipes for underground piped city gas distribution system","IS:14885",pipes,"PE pipes for distribution of gaseous fuels"
+"steel cylinder pipes with concrete lining for large water transmission","IS:1916",pipes,"Prestressed/reinforced concrete cylinder pipes for trunk mains"
+"hot rolled structural steel plates and sections for pipe support fabrication","IS:2062",pipes,"Structural steel for supports, trestles and pipeline structures"
+"elastomeric rubber sealing rings for water pipeline joints","IS:5382",pipes,"Rubber gasket seals for jointing water and drainage pipes"
+"unplasticized PVC casing and screen pipes for agricultural tube wells","IS:12818",pipes,"Ribbed screen and casing pipes for water borehole tubewells"
