@@ -81,12 +81,27 @@ SOURCE_TYPE = "web_scrape_post"
 # These IS numbers are from publicly available BIS publications, government
 # tender documents, and procurement guidelines. All are real standards.
 # ---------------------------------------------------------------------------
+CATEGORIES = ["pipes", "cement", "electrical", "safety"]
+
 CATEGORY_IS_SEEDS: dict[str, list[str]] = {
     "pipes": [
-        # GI / Steel tubes & pipes
+        # Primary benchmark standards
         "1239",   # Steel Tubes, Tubulars and Other Wrought Steel Fittings (GI pipes)
+        "4985",   # UPVC Pipes for Potable Water Supply
+        "1536",   # Centrifugally Cast (Spun) Iron Pressure Pipes for Water, Gas and Sewage
+        "8008",   # Injection Moulded HDPE Fittings for Potable Water
+        "10124",  # Fabricated PVC Fittings for Potable Water Supplies
+        "14333",  # HDPE Pipes for Sewerage
+        "14885",  # Polyethylene Pipes for the Supply of Gaseous Fuels
+        "1916",   # Steel Cylinder Reinforced Concrete Pipes
+        "2062",   # Hot Rolled Medium and High Tensile Structural Steel
+        "5382",   # Rubber Seals - Joint Rings for Water Supply Pipelines
+        "12818",  # Unplasticized PVC Pipes for Casing and Produce from Tube Wells
+        "8329",   # Ductile Iron Pipes for Potable Water
         "1161",   # Steel Tubes for Structural Purposes
         "3589",   # Steel Pipes (water/gas transport, large diameter)
+        "4984",   # High Density Polyethylene Pipes
+        # Additional pipes & fittings
         "4270",   # Steel Tubes Used for Water Wells (Casing Pipes)
         "9295",   # Steel Tubes for Idlers for Belt Conveyors
         "1978",   # Line Pipe
@@ -94,9 +109,6 @@ CATEGORY_IS_SEEDS: dict[str, list[str]] = {
         "6913",   # Stainless Steel Tubes for Food, Beverage, Dairy
         "3601",   # Steel Tubes for Mechanical and General Engineering Purposes
         "10748",  # Hot-Rolled Steel Strip for Welded Tubes and Pipes
-        # Cast iron / Ductile iron
-        "1536",   # Centrifugally Cast (Spun) Iron Pressure Pipes for Water, Gas and Sewage
-        "8329",   # Ductile Iron Pipes for Potable Water
         "9523",   # Ductile Iron Pipe Fittings
         "1538",   # Cast Iron Pipe Fittings
         "3647",   # Cast Iron Drain Pipes
@@ -105,33 +117,19 @@ CATEGORY_IS_SEEDS: dict[str, list[str]] = {
         "1729",   # Cast Iron Drainage Pipes and Fittings
         "1230",   # Cast Iron Rainwater Pipes and Fittings
         "3989",   # Centrifugally Cast Iron Soil, Waste and Ventilating Pipes
-        # HDPE / Polyethylene
-        "4984",   # High Density Polyethylene Pipes
         "14151",  # HDPE Pipes for Potable Water Supplies
-        "14333",  # HDPE Pipes for Sewerage
         "12235",  # HDPE Pipes - Methods of Test
-        "8008",   # Injection Moulded HDPE Fittings for Potable Water
         "8360",   # Fabricated HDPE Fittings for Potable Water
-        "14885",  # Polyethylene Pipes for the Supply of Gaseous Fuels
         "15328",  # Polyethylene (PE) Pipe Systems for Water Supply
-        # PVC / UPVC / CPVC
-        "4985",   # UPVC Pipes for Potable Water Supply
         "13592",  # UPVC Pipes for Soil and Waste Discharge Systems
-        "12818",  # Unplasticized PVC Pipes for Casing and Produce from Tube Wells
         "15778",  # CPVC Pipes for Potable Hot and Cold Water Distribution
         "16098",  # Structured-Wall Plastics Piping Systems
         "7634",   # Code of Practice for Plastic Pipe Systems
-        "10124",  # Fabricated PVC Fittings for Potable Water Supplies
         "7834",   # Injection Moulded PVC Fittings with Solvent Cement Joints
-        # Concrete / Stoneware / Seals
         "458",    # Precast Concrete Pipes (with and without reinforcement)
         "783",    # Code of Practice for Laying of Concrete Pipes
-        "1916",   # Steel Cylinder Reinforced Concrete Pipes
         "651",    # Salt Glazed Stoneware Pipes
-        "5382",   # Rubber Seals - Joint Rings for Water Supply Pipelines
         "2379",   # Color Code Identification of Pipelines
-        # Structural steel & reinforcement (procured with piping)
-        "2062",   # Hot Rolled Medium and High Tensile Structural Steel
         "1786",   # High Strength Deformed Steel Bars and Wires for Concrete Reinforcement
         "808",    # Dimensions for Hot Rolled Steel Beam, Column, Channel and Angle Sections
         "432",    # Mild Steel and Medium Tensile Steel Bars for Concrete Reinforcement

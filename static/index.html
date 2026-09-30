@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="StandardMatch AI — AI-Powered Recommendation Engine for Identifying Applicable Indian Standards (IS) for Government Procurement Specifications. Smart India Hackathon 2026.">
+    <title>StandardMatch AI | Indian Standards Recommendation Engine</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🇮🇳</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <!-- ====== TRICOLOR TOP BAR ====== -->
+    <div class="tricolor-bar">
+        <div class="tricolor-saffron"></div>
+        <div class="tricolor-white"></div>
+        <div class="tricolor-green"></div>
+    </div>
+
+    <!-- ====== HEADER ====== -->
+    <header class="app-header" id="app-header">
+        <div class="header-inner">
+            <div class="logo-group">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="20" cy="20" r="18" stroke="url(#grad1)" stroke-width="2.5" fill="none"/>
+                        <path d="M12 20 L18 26 L28 14" stroke="url(#grad1)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                        <defs><linearGradient id="grad1" x1="0" y1="0" x2="40" y2="40"><stop offset="0%" stop-color="#FF9933"/><stop offset="50%" stop-color="#FFFFFF"/><stop offset="100%" stop-color="#138808"/></linearGradient></defs>
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="logo-text">Standard<span class="logo-accent">Match</span> AI</h1>
+                    <p class="logo-sub">Indian Standards Recommendation Engine</p>
+                </div>
+            </div>
+            <nav class="header-nav" id="main-nav">
+                <button class="nav-btn active" data-tab="search" id="nav-search">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                    Search
+                </button>
+                <button class="nav-btn" data-tab="tender" id="nav-tender">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                    Tender Analysis
+                </button>
+                <button class="nav-btn" data-tab="browse" id="nav-browse">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                    Browse
+                </button>
+                <button class="nav-btn" data-tab="dashboard" id="nav-dashboard">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
+                    Dashboard
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ====== MAIN CONTENT ====== -->
+    <main class="app-main">
+
+        <!-- ===== SEARCH TAB ===== -->
+        <section class="tab-panel active" id="panel-search">
+            <div class="hero-section">
+                <div class="hero-badge">SIH 2026 • AI-Powered • BIS Standards</div>
+                <h2 class="hero-title">Find the Right <span class="gradient-text">Indian Standard</span></h2>
+                <p class="hero-subtitle">Enter a procurement specification or describe your requirement. Our AI engine identifies the most applicable BIS standards with confidence scores and scope evidence.</p>
+
+                <div class="search-container" id="search-container">
+                    <div class="search-box">
+                        <svg class="search-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                        <input type="text" id="search-input" class="search-input" placeholder="e.g. GI pipes for drinking water supply, medium class..." autocomplete="off">
+                        <button class="search-btn" id="search-btn" onclick="doSearch()">
+                            <span>Search</span>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </button>
+                    </div>
+                    <div class="search-hints">
+                        <span class="hint-label">Try:</span>
+                        <div class="hint-chips" id="hint-chips">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Search Results -->
+            <div class="results-area" id="results-area" style="display:none;">
+                <div class="results-header">
+                    <h3 class="results-title" id="results-title">Results</h3>
+                    <div class="results-actions">
+                        <button class="action-btn" onclick="exportResults('csv')" id="export-csv-btn">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                            Export CSV
+                        </button>
+                    </div>
+                </div>
+                <div class="results-grid" id="results-grid">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+
+            <!-- Loading -->
+            <div class="loading-area" id="loading-search" style="display:none;">
+                <div class="loader">
+                    <div class="loader-ring"></div>
+                    <p>Analyzing specifications...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== TENDER ANALYSIS TAB ===== -->
+        <section class="tab-panel" id="panel-tender">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                    Tender Document Analysis
+                </h2>
+                <p class="section-desc">Paste your complete tender specification or Bill of Quantities (BoQ). Our engine extracts each procurement item and identifies applicable Indian Standards.</p>
+            </div>
+
+            <div class="tender-container">
+                <div class="tender-input-area">
+                    <div class="textarea-header">
+                        <label for="tender-textarea">Tender Text / BoQ</label>
+                        <button class="text-btn" onclick="loadSampleTender()" id="load-sample-btn">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+                            Load Sample
+                        </button>
+                    </div>
+                    <textarea id="tender-textarea" class="tender-textarea" rows="14" placeholder="Paste tender specification text here...&#10;&#10;Example:&#10;1. Supply of GI pipes (medium class) 50mm — 2500 Rmt.&#10;2. Supply of HDPE pipes PE-100, PN 6, 110mm OD — 5000 Rmt.&#10;3. Rubber sealing rings for pipe joints — 500 Nos."></textarea>
+                    <button class="primary-btn" onclick="analyzeTender()" id="analyze-btn">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+                        Analyze Tender
+                    </button>
+                </div>
+
+                <!-- Tender Results -->
+                <div class="tender-results" id="tender-results" style="display:none;">
+                    <div class="tender-summary" id="tender-summary"></div>
+                    <div class="tender-items" id="tender-items"></div>
+                </div>
+            </div>
+
+            <div class="loading-area" id="loading-tender" style="display:none;">
+                <div class="loader">
+                    <div class="loader-ring"></div>
+                    <p>Analyzing tender document...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== BROWSE TAB ===== -->
+        <section class="tab-panel" id="panel-browse">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                    Browse Standards Database
+                </h2>
+                <p class="section-desc">Explore all indexed Indian Standards. Filter by category or search within the database.</p>
+            </div>
+
+            <div class="browse-controls">
+                <div class="browse-search">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                    <input type="text" id="browse-search-input" class="browse-search-input" placeholder="Filter by IS number, title, or keyword..." oninput="filterBrowse()">
+                </div>
+                <div class="category-pills" id="category-pills">
+                    <button class="cat-pill active" data-cat="all" onclick="filterCategory('all', this)">All</button>
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+
+            <div class="browse-grid" id="browse-grid">
+                <!-- Populated by JS -->
+            </div>
+        </section>
+
+        <!-- ===== DASHBOARD TAB ===== -->
+        <section class="tab-panel" id="panel-dashboard">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
+                    Database Dashboard
+                </h2>
+                <p class="section-desc">Overview of the standards database, coverage metrics, and system status.</p>
+            </div>
+
+            <div class="dashboard-stats" id="dashboard-stats">
+                <div class="stat-card stat-primary">
+                    <div class="stat-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                    </div>
+                    <div class="stat-value" id="stat-total">0</div>
+                    <div class="stat-label">Total Standards</div>
+                </div>
+                <div class="stat-card stat-success">
+                    <div class="stat-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    </div>
+                    <div class="stat-value" id="stat-active">0</div>
+                    <div class="stat-label">Active Standards</div>
+                </div>
+                <div class="stat-card stat-warning">
+                    <div class="stat-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4"/><path d="M10.363 3.591l-8.106 13.534a1.914 1.914 0 0 0 1.636 2.871h16.214a1.914 1.914 0 0 0 1.636-2.87L13.637 3.59a1.914 1.914 0 0 0-3.274 0z"/><path d="M12 17h.01"/></svg>
+                    </div>
+                    <div class="stat-value" id="stat-qco">0</div>
+                    <div class="stat-label">QCO Mandatory</div>
+                </div>
+                <div class="stat-card stat-info">
+                    <div class="stat-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                    </div>
+                    <div class="stat-value" id="stat-cats">0</div>
+                    <div class="stat-label">Categories</div>
+                </div>
+            </div>
+
+            <div class="dashboard-grid">
+                <div class="dash-card">
+                    <h3 class="dash-card-title">Category Distribution</h3>
+                    <div class="dash-card-body" id="dash-categories">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+                <div class="dash-card">
+                    <h3 class="dash-card-title">Status Distribution</h3>
+                    <div class="dash-card-body" id="dash-status">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+                <div class="dash-card">
+                    <h3 class="dash-card-title">System Information</h3>
+                    <div class="dash-card-body" id="dash-system">
+                        <div class="system-row"><span>Engine</span><span class="mono">TF-IDF + Keyword Hybrid</span></div>
+                        <div class="system-row"><span>Data Source</span><span class="mono">BIS Portal (standardsbis.bsbedge.com)</span></div>
+                        <div class="system-row"><span>API</span><span class="mono">FastAPI v1.0</span></div>
+                        <div class="system-row"><span>Version</span><span class="mono">1.0.0 (SIH 2026)</span></div>
+                    </div>
+                </div>
+                <div class="dash-card">
+                    <h3 class="dash-card-title">QCO Mandatory Standards</h3>
+                    <div class="dash-card-body" id="dash-qco">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ====== STANDARD DETAIL MODAL ====== -->
+    <div class="modal-overlay" id="modal-overlay" onclick="closeModal()">
+        <div class="modal" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeModal()" id="modal-close-btn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+            <div class="modal-body" id="modal-body">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== FOOTER ====== -->
+    <footer class="app-footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <strong>StandardMatch AI</strong> — Smart India Hackathon 2026
+            </div>
+            <div class="footer-links">
+                <span>Bureau of Indian Standards (BIS)</span>
+                <span>•</span>
+                <span>AI-Powered Recommendation Engine</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
